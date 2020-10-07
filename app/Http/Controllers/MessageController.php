@@ -30,7 +30,7 @@ class MessageController extends Controller
                         'token' => '<token-provided>',
                         'from'  => '<Identity>',
                         'to'    => '<comma_separated 10-digit mobile numbers>',
-                        'text'  => 'SMS Message to be sent'));
+                        'text'  => $composeMessage));
 
                     $url = "http://api.sparrowsms.com/v2/sms/";
 
@@ -45,6 +45,11 @@ class MessageController extends Controller
                     $response = curl_exec($ch);
                     $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     curl_close($ch);
+
+                    if ($status_code == 200) {
+                        $response = json_decode($response);
+                        echo $response->response;
+                    }
 
                 }
             }

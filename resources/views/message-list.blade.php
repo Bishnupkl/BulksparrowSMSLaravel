@@ -52,7 +52,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" id="message_sms_form">
+                <form action="{{route('send.sms')}}" method="post" id="message_sms_form">
                     {{csrf_field()}}
                     <input type="hidden" name="message_id">
                     <ul>
@@ -64,7 +64,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Send Message</button>
             </div>
         </div>
     </div>
@@ -78,6 +78,11 @@
             alert(message_id);
             $('input[name="message_id"]').prop('value',message_id);
             // $('#message_sms_form').submit();
+        });
+
+        $('.btn-primary').click(function (e) {
+            e.preventDefault();
+            $('#message_sms_form').submit();
         });
     });
 </script>

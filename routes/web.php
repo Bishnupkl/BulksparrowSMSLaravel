@@ -19,4 +19,4 @@ Route::get('/', function () {
 
 
 Route::get('/', 'App\Http\Controllers\MessageController@messageList');
-Route::post('send/sms', 'App\Http\Controllers\MessageController@send_message');
+Route::post('send/sms', 'App\Http\Controllers\MessageController@send_message')->name('send.sms');
